@@ -100,7 +100,8 @@ class EventsController extends BaseController
     ]
      */
 
-    public function getEventsWithWorkshops() {
+    public function getEventsWithWorkshops(): \Illuminate\Http\JsonResponse
+    {
         return response()->json(
             Event::query()
                 ->with('workshops')
@@ -182,7 +183,8 @@ class EventsController extends BaseController
     ```
      */
 
-    public function getFutureEventsWithWorkshops() {
+    public function getFutureEventsWithWorkshops(): \Illuminate\Http\JsonResponse
+    {
 
         // Get the current date and time
         $currentDateTime = now();
