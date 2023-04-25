@@ -92,14 +92,15 @@ class MenuController extends BaseController
     ]
      */
 
-    public function getMenuItems() {
+    public function getMenuItems(): \Illuminate\Http\JsonResponse
+    {
         $menuItems = MenuItem::all();
         $menuTree = $this->buildMenuTree($menuItems);
 
         return response()->json($menuTree);
     }
 
-    private function buildMenuTree($menuItems)
+    private function buildMenuTree($menuItems): array
     {
         $itemsByParentId = [];
 
