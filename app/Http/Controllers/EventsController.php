@@ -101,9 +101,11 @@ class EventsController extends BaseController
      */
 
     public function getEventsWithWorkshops() {
-        return Event::query()
-            ->with('workshops')
-            ->get();
+        return response()->json(
+            Event::query()
+                ->with('workshops')
+                ->get()
+        );
     }
 
 
@@ -186,7 +188,7 @@ class EventsController extends BaseController
         $currentDateTime = now();
 
 // Fetch the events
-        return $events = Event::query()
+         $events = Event::query()
             ->select('events.*')
             ->with(['workshops' => function ($query) use ($currentDateTime) {
                 $query->where('start', '>', $currentDateTime);
@@ -200,6 +202,6 @@ class EventsController extends BaseController
             ->orderBy('workshops.start', 'asc')
             ->get();
 
-        //throw new \Exception('implement in coding task 2');
+        return response()->json($events);
     }
 }
